@@ -1,11 +1,12 @@
-import ReactFlow, { Background, Controls, ConnectionMode, addEdge, Connection, useEdgesState, useNodesState } from 'reactflow';
+import ReactFlow, { Background, Controls, ConnectionMode, addEdge, Connection, useEdgesState, useNodesState, Node } from 'reactflow';
+
 import * as Toolbar from '@radix-ui/react-toolbar'
 import { useCallback } from 'react';
 import { DefaultEdge } from './components/edges/DefaultEdge';
 import  { Square } from './components/nodes/Square';
 import 'reactflow/dist/style.css';
 
-const NODE_TYPES = {  
+const NODE_TYPES: any = {  
   square: Square,
 }
 
@@ -13,10 +14,12 @@ const EDGE_TYPE = {
   default: DefaultEdge,
 }
 
+let uuid = self.crypto.randomUUID();
 
 const INITIAL_NODES = [
+  
   {
-    id: crypto.randomUUID(),
+    id: uuid.toString(),
     type: 'square',
     position: {
       x: 200, 
