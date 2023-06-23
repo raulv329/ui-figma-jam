@@ -6,6 +6,7 @@ import { DefaultEdge } from './components/edges/DefaultEdge';
 import  { Square } from './components/nodes/Square';
 import 'reactflow/dist/style.css';
 
+
 const NODE_TYPES: any = {  
   square: Square,
 }
@@ -22,7 +23,7 @@ const INITIAL_NODES = [
     id: uuid.toString(),
     type: 'square',
     position: {
-      x: 200, 
+      x: 120, 
       y: 400,
     },
     data: {},
@@ -32,8 +33,8 @@ const INITIAL_NODES = [
     id: crypto.randomUUID(),
     type: 'square',
     position: {
-      x: 1000, 
-      y: 400,
+      x: 120, 
+      y: 100,
     },
     data: {},
   },  
@@ -45,18 +46,18 @@ function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState(INITIAL_NODES)
 
   const onConnect = useCallback((connection: Connection) => {
-    return setEdges(edges => addEdge(connection, edges))
+    return setEdges((edges: any) => addEdge(connection, edges))
   }, [])
 
   function addSquareMode() {
-    setNodes(nodes => [
+    setNodes((nodes: any) => [
       ...nodes,
         {
           id: crypto.randomUUID(),
           type: 'square',
           position: {
-            x: 750, 
-            y: 350,
+            x: 140, 
+            y: 150,
           },
           data: {},
         },            
@@ -85,12 +86,13 @@ function App() {
           color="ccc"
         />        
         <Controls />
+
+        <strong>Desenvolvido por Raul </strong>
       </ReactFlow>
-        <Toolbar.Root className='fixed bottom-20 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg border border-zinc-300 px-8 h-20 w-96 overflow-hidden'>
-          <Toolbar.Button className='w-32 h-32 bg-violet-500 mt-6 rounded transition-transform hover:-translate-y-2' 
-            onClick={addSquareMode}            
-          />                
-        </Toolbar.Root>
+        <Toolbar.Root className='fixed flex bottom-20 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg border border-zinc-300 px-8 h-20 w-96 overflow-hidden'>
+          <Toolbar.Button className='w-32 h-32 bg-violet-500 mt-6 rounded transition-transform hover:-translate-y-2'onClick={addSquareMode}>            
+          </Toolbar.Button>          
+        </Toolbar.Root>        
     </div>
   )
 }
